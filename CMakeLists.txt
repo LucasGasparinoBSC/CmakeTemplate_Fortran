@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.15)
 
 # Set project name, version and languages
-project(test LANGUAGES C CXX)
+project(test LANGUAGES C CXX Fortran)
 
 # Set project versions: major, minor and patch
 set(TEST_VERSION_MAJOR "0")
