@@ -4,6 +4,9 @@ cmake_minimum_required(VERSION 3.15)
 # Set project name, version and languages
 project(test LANGUAGES C CXX Fortran)
 
+# Include external projects
+include(ExternalProject)
+
 # Set project versions: major, minor and patch
 set(TEST_VERSION_MAJOR "0")
 set(TEST_VERSION_MINOR "0")
@@ -13,6 +16,7 @@ set(TEST_VERSION "${TEST_VERSION_MAJOR}.${TEST_VERSION_MINOR}.${TEST_VERSION_PAT
 # Options
 option(UNIT_TESTING "Enable unit tests" ON)
 option(USE_MPI "Compile using MPI" ON)
+option(USE_METIS "Compile using Metis" ON)
 
 # Folder with files configuring extra CMake options
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
@@ -57,6 +61,13 @@ if("${isSystemDir}" STREQUAL "-1")
     set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 endif("${isSystemDir}" STREQUAL "-1")
 
+# Enable METIS if requested
+if (USE_METIS)
+  include(metis)
+  init_metis()
+endif()
+
+add_subdirectory(external)
 add_subdirectory(src)
 
 # Enable testing
