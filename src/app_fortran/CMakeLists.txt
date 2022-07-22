@@ -1,10 +1,8 @@
 project(app_fortran)
 
 file(GLOB_RECURSE SRC_FILES ${CMAKE_CURRENT_LIST_DIR}/*.F90)
-#set(HEADER_DIR ${CMAKE_CURRENT_LIST_DIR}/headers)
-#file(GLOB HEADER_FILES ${HEADER_DIR}/*.h)
 
-#include_directories(${HEADER_DIR} ${lib1_INCLUDE_DIRS})
+include_directories(${lib_fortran_INCLUDE_DIRS})
 
 add_definitions(-D__BUILD_VERSION__="${TEST_VERSION}")
 
