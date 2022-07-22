@@ -8,7 +8,7 @@ add_definitions(-D__BUILD_VERSION__="${TEST_VERSION}")
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 
-#set_mpi()
+set_mpi()
 
 target_link_libraries(${PROJECT_NAME} libfortran)
 
