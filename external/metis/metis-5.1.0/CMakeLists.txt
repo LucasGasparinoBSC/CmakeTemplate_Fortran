@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.15)
 project(METIS)
 
 set(GKLIB_PATH "${CMAKE_SOURCE_DIR}/GKlib" CACHE PATH "path to GKlib")
-set(SHARED FALSE CACHE BOOL "build a shared library")
+set(SHARED TRUE CACHE BOOL "build a shared library")
 set(METIS_INTEGER "32" CACHE STRING "Compiling with integers 32/64 bits")
 set_property(CACHE METIS_INTEGER PROPERTY STRINGS 32 64)
 set(METIS_REAL "64" CACHE STRING "Compiling with reals 32/64 bits")
@@ -16,6 +16,7 @@ endif()
 
 # Configure libmetis library.
 if(SHARED)
+  message("Building METIS shared library")
   set(METIS_LIBRARY_TYPE SHARED)
 else()
   set(METIS_LIBRARY_TYPE STATIC)

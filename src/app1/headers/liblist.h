@@ -17,4 +17,9 @@
 #include "vecFunc.h"
 #include "matrixFunc.h"
 
+// List of external libraries
+#ifndef NO_METIS
+#include "metis.h"
+#endif // !NO_METIS
+
 #endif // !LIBLIST_H

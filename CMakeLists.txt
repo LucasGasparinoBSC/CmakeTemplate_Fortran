@@ -62,8 +62,8 @@ if("${isSystemDir}" STREQUAL "-1")
 endif("${isSystemDir}" STREQUAL "-1")
 
 # Enable METIS if requested
+include(metis)
 if (USE_METIS)
-  include(metis)
   init_metis()
 endif()
 
