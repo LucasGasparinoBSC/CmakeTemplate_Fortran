@@ -68,6 +68,12 @@ if (USE_METIS)
   init_metis()
 endif()
 
+# Enable SFC if requested
+include(gempa)
+if (USE_SFC)
+  init_gempa()
+endif()
+
 add_subdirectory(external)
 add_subdirectory(src)
 

@@ -70,6 +70,7 @@ int main()
     printMsg(msg);
     printf("%lf\n", DinnerD);
 
+    #ifndef NO_SFC
     // Test wheter GEMPA can indeed be used
     msg = "Using library function GEMPA...";
     printMsg(msg);
@@ -80,6 +81,7 @@ int main()
     printMsg(msg);
     P1.sdim = 2;
     std::cout << "P1.sdim: " << P1.sdim << std::endl;
+    #endif // !NO_SFC
 
     // Finalize MPI environment
     #ifndef NO_MPI
