@@ -3,7 +3,6 @@ function(init_gempa)
     set(ENABLE_TESTS ON CACHE INTERNAL "")
     set(ENABLE_EXAMPLES ON CACHE INTERNAL "")
     set(BUILD_STATIC_LIBRARIES OFF CACHE INTERNAL "")
-    set(CMAKE_BUILD_TYPE Release CACHE INTERNAL "")
   endif()
 endfunction()
 
