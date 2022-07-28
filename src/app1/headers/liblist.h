@@ -21,5 +21,6 @@
 #ifndef NO_METIS
 #include "metis.h"
 #endif // !NO_METIS
+#include "Partitioner.h"
 
 #endif // !LIBLIST_H

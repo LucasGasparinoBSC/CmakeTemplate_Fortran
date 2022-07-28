@@ -17,6 +17,7 @@ set(TEST_VERSION "${TEST_VERSION_MAJOR}.${TEST_VERSION_MINOR}.${TEST_VERSION_PAT
 option(UNIT_TESTING "Enable unit tests" ON)
 option(USE_MPI "Compile using MPI" ON)
 option(USE_METIS "Compile using Metis" ON)
+option(USE_SFC "Compile using GEMPA" ON)
 
 # Folder with files configuring extra CMake options
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
