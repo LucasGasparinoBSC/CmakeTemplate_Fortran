@@ -70,6 +70,17 @@ int main()
     printMsg(msg);
     printf("%lf\n", DinnerD);
 
+    // Test wheter GEMPA can indeed be used
+    msg = "Using library function GEMPA...";
+    printMsg(msg);
+    gempa::Partitioner P1;
+
+    // See if the object can be modified
+    msg = "Modifying the object...";
+    printMsg(msg);
+    P1.sdim = 2;
+    std::cout << "P1.sdim: " << P1.sdim << std::endl;
+
     // Finalize MPI environment
     #ifndef NO_MPI
     mpiEnd();
