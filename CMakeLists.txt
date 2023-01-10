@@ -9,7 +9,7 @@ include(ExternalProject)
 
 # Set project versions: major, minor and patch
 set(TEST_VERSION_MAJOR "0")
-set(TEST_VERSION_MINOR "0")
+set(TEST_VERSION_MINOR "1")
 set(TEST_VERSION_PATCH "0")
 set(TEST_VERSION "${TEST_VERSION_MAJOR}.${TEST_VERSION_MINOR}.${TEST_VERSION_PATCH}")
 
@@ -34,14 +34,33 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 # Set compilation config for certain compilers
+message(STATUS "CXX compiler: ${CMAKE_CXX_COMPILER_ID}")
+## GNU compilers
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wsign-conversion -Wold-style-cast")
-    set(CMAKE_CXX_FLAGS_DEBUG "-g")
-    set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+	set(CMAKE_C_FLAGS "-cpp")
+	set(CMAKE_C_FLAGS_DEBUG "-g -Wall -Wextra -Wsign-conversion -Wold-style-cast")
+	set(CMAKE_C_FLAGS_RELEASE "-O3 -march=native")
+    set(CMAKE_CXX_FLAGS "-cpp")
+    set(CMAKE_CXX_FLAGS_DEBUG "-g -Wall -Wextra -Wsign-conversion -Wold-style-cast")
+    set(CMAKE_CXX_FLAGS_RELEASE "-O3 -march=native")
+	set(CMAKE_Fortran_FLAGS "-cpp")
+	set(CMAKE_Fortran_FLAGS_DEBUG "-g -Wall -Wextra -Wpedantic -fbacktrace -Wconversion-extra -ftrapv -fcheck=all")
+	set(CMAKE_Fortran_FLAGS_RELEASE "-O3 -march=native")
+## NVHPC compilers
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "NVHPC" OR CMAKE_CXX_COMPILER_ID STREQUAL "PGI")
+	set(CMAKE_C_FLAGS "-cpp -DUSE_ACC -lstdc++ -lmpi_cxx -gpu=cc61,managed,lineinfo -acc -cuda -Minfo=all")
+	set(CMAKE_C_FLAGS_DEBUG "-g -Minform=inform -C -Mbounds -Mchkstk -traceback -Ktrap=fp,unf")
+	set(CMAKE_C_FLAGS_RELEASE "-fast")
+    set(CMAKE_CXX_FLAGS "-cpp -DUSE_ACC -lstdc++ -lmpi_cxx -gpu=cc61,managed,lineinfo -acc -cuda -Minfo=all")
+    set(CMAKE_CXX_FLAGS_DEBUG "-g -Minform=inform -C -Mbounds -Mchkstk -traceback -Ktrap=fp,unf")
+    set(CMAKE_CXX_FLAGS_RELEASE "-fast")
+	set(CMAKE_Fortran_FLAGS "-cpp -DUSE_ACC -lstdc++ -lmpi_cxx -gpu=cc61,managed,lineinfo -acc -cuda -Minfo=all")
+    set(CMAKE_Fortran_FLAGS_DEBUG "-g -Minform=inform -C -Mbounds -Mchkstk -traceback -Ktrap=fp,unf")
+    set(CMAKE_Fortran_FLAGS_RELEASE "-fast")
 endif()
 
 # Set C/C++ standard
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 # use, i.e. don't skip the full RPATH for the build tree
 set(CMAKE_SKIP_BUILD_RPATH FALSE)
