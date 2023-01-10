@@ -6,6 +6,9 @@ module lib_maths
         real(8)   , intent(in)  :: a(n), b(n)
         real(8)   , intent(out) :: c(n)
         integer(8)              :: i
+#ifdef USE_ACC
+        !$acc parallel loop
+#endif
         do i = 1, n
             c(i) = a(i) + b(i)
         end do

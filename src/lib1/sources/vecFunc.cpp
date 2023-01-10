@@ -2,6 +2,9 @@
 
 void vecAdd(double *a, double *b, double *c, int n)
 {
+#ifdef USE_ACC
+    #pragma acc parallel loop
+#endif
     for (int i = 0; i < n; i++)
         c[i] = a[i] + b[i];
 }
